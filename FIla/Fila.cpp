@@ -28,7 +28,11 @@ int main()
 
 void enqueue(int num)
 {
-	...
+	if (isFull()) printf("A fila esta cheia"); 
+	else 
+	{
+		if (inicio = -1) inicio = 0;
+	}
 }
 
 
@@ -39,7 +43,8 @@ int dequeue()
 
 bool isFull()
 {
-	...
+	if (fim + 1 == tam) return true;
+	else return false;
 }
 
 bool isEmpty()
