@@ -1,3 +1,8 @@
 {
-    "code-runner.runInTerminal": true
+    "code-runner.runInTerminal": true,
+    "C_Cpp.default.compilerPath": "c:\\Program Files (x86)\\Dev-Cpp\\MinGW64\\bin\\g++.exe",
+    "code-runner.executorMap": {
+        "c": "\"c:\\Program Files (x86)\\Dev-Cpp\\MinGW64\\bin\\g++.exe\" $dir$fileName -o $dir$fileNameWithoutExt.exe && $dir$fileNameWithoutExt.exe",
+        "cpp": "\"c:\\Program Files (x86)\\Dev-Cpp\\MinGW64\\bin\\g++.exe\" $dir$fileName -o $dir$fileNameWithoutExt.exe && $dir$fileNameWithoutExt.exe"
+    }
 }
