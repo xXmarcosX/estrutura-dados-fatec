@@ -16,36 +16,22 @@ int main()
     return 0;
 }
 
-bool isEmpty() { return inicio == -1; }
-
-bool isFull()
-{
-    return (inicio == (fim + 1) % tam || inicio == 0 && fim == tam - 1);
+bool isEmpty() {
+    return inicio == -1;
 }
 
-void enqueue(int num)
-{
-    if (isFull())
-        printf("A FILA ESTA CHEIA");
-    else
-    {
-        if (inicio == -1)
-            inicio - 0;
+bool isFull() {
+    return inicio == (fim + 1) % tam || inicio == 0 && fim == tam - 1;
+}
+
+void enqueue(int num) {
+    if (isFull()) printf("A FILA ESTA CHEIA");
+    else {
+        if (inicio == - 1) inicio = 0;
 
         fim = (fim + 1) % tam;
         fila[fim] = num;
-    }
-}
 
-int dequeue()
-{
-    int num = 0;
-
-    if (isEmpty())
-    {
-        return -1;
-    }
-    else
-    {
+        printf("%d foi adicionad a fila", num);
     }
 }
