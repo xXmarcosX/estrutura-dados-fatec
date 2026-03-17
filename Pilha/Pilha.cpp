@@ -14,6 +14,7 @@
 
 //prototype
 void menu(bool *isRunning);
+void conversorBinario(int num);
 
 void push(int num);
 void printStack();
@@ -23,8 +24,9 @@ bool isEmpty();
 
 //globals
 int stack[5];
+int conversorStack[25];
 int tam = 5;
-int topo = -1;
+int topo = -1, conversorTop = -1;
 
 int main()
 {
@@ -86,7 +88,8 @@ void menu(bool *isRunning) {
     printf("\n\n1 - Inserir elemento na pilha");
     printf("\n2 - Remover elemento da pilha");
     printf("\n3 - Mostrar elementos da pilha");
-    printf("\n4 - Sair");
+    printf("\n4 - Conversor Binario");
+    printf("\n0 - Sair");
     printf("\n\n=================================");
     
     printf("\n\nDigite sua opcao: ");
@@ -111,6 +114,13 @@ void menu(bool *isRunning) {
         break;
 
     case 4:
+        printf("Digite o numero que sera convertido em binario: ");
+        scanf("%d", &numero);
+
+        conversorBinario(numero);
+        break;
+
+    case 0:
     	printf("Saindo...");
     	
         *isRunning = false;
@@ -124,4 +134,18 @@ void menu(bool *isRunning) {
     puts("");
     puts("");
     system("pause");
+}
+
+void conversorBinario(int num) {
+    conversorTop = -1;
+
+    while(num >= 1) {
+        conversorTop++;
+        conversorStack[conversorTop] = num % 2;
+
+        num /= 2;
+    }
+
+    printf("Numero convertido: ");
+    for (int i = conversorTop; i >= 0; i--) printf("%d", conversorStack[i]);
 }
