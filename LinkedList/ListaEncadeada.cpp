@@ -45,21 +45,83 @@ int main()
     }
     else
     {
-        insereNoFim(Lista);
-    }
+        int opt = 1;
 
-    exibirLista(Lista);
+        while (opt)
+        {
+            opt = menu();
+            tratarOpcao(Lista, opt);
+
+            puts("");
+
+            system("pause");
+            system("cls");
+        }
+    }
 
     return 0;
 }
 
-// int menu() {
+int menu()
+{
+    int opt = 0;
 
-// }
+    puts("Escolha sua opcao: ");
 
-// void tratarOpcao(Node *List, int opt) {
+    printf("==================MENU DA LISTA====================");
+    printf("\n(1) - Zerar a lista");
+    printf("\n(2) - Exibir a lista");
+    printf("\n(3) - Inserir um elemento no FIM da lista");
+    printf("\n(4) - Inserir elemento no INICIO da lista");
+    printf("\n(5) - Excluir um elemento do FIM da lista");
+    printf("\n(6) - Excluir um elemento do INICIO da lista");
+    printf("\n(0) - Sair");
+    puts("\n==================================================");
 
-// }
+    printf("Opcao: ");
+    scanf("%d", &opt);
+
+    return opt;
+}
+
+void tratarOpcao(Node *List, int opt)
+{
+    Node *temp;
+
+    switch (opt)
+    {
+    case 1:
+        iniciarLista(List);
+        break;
+    case 2:
+        exibirLista(List);
+        break;
+    case 3:
+        insereNoFim(List);
+        break;
+
+    case 4:
+        insereInicio(List);
+        break;
+
+    case 5:
+        retirarDoFim(List);
+        break;
+
+    case 6:
+        retirarInicio(List);
+        break;
+
+    case 0:
+        printf("Saindo...");
+        exit(0);
+        break;
+
+    default:
+        puts("Opcao invalida");
+        break;
+    }
+}
 
 void iniciarLista(Node *List)
 {
@@ -96,6 +158,19 @@ Node *alocaMemoria()
     }
 }
 
+void insereInicio(Node *List)
+{
+    Node *novo = alocaMemoria();
+    Node *head = List->prox;
+
+    List->prox = novo;
+    novo->prox = head;
+
+    puts("No inserido no inicio da lista");
+
+    tam++;
+}
+
 void insereNoFim(Node *Lista)
 {
     Node *novo = alocaMemoria();
@@ -116,27 +191,90 @@ void insereNoFim(Node *Lista)
     }
 
     tam++;
-    puts("Novo elemento inserido com sucesso!");
+    puts("Novo elemento inserido com sucesso!\n\n");
+}
+
+Node *retirarInicio(Node *List)
+{
+    if (List->prox == NULL)
+    {
+        puts("\nA lista esta vazia");
+
+        return NULL;
+    }
+    else
+    {
+        Node *temp = List->prox;
+        List->prox = temp->prox;
+
+        tam--;
+
+        printf("Elemento excluido do inicio da lista");
+
+        return temp;
+    }
+}
+
+Node *retirarDoFim(Node *List)
+{
+    if (List->prox == NULL)
+    {
+        puts("\nA lista ja esta vazia");
+
+        return NULL;
+    }
+    else
+    {
+        Node *ultimo = List->prox;
+        Node *penultimo = List;
+
+        while (ultimo->prox != NULL)
+        {
+            penultimo = ultimo;
+            ultimo = ultimo->prox;
+        }
+
+        penultimo->prox = NULL;
+
+        puts("Elemento excluido com sucesso do fim da lista");
+
+        tam--;
+
+        return ultimo;
+    }
 }
 
 // Função para exibir todo o conteúdo da Lista
 void exibirLista(Node *Lista)
 {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // COR ORIGINAL
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_Attributes;
+
+    // salvar os atributos das cores
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_Attributes = consoleInfo.wAttributes; // Salva a cor original
+
     if (vazia(Lista))
         puts("\nA lista esta vazia");
     else
     {
         Node *temp = Lista->prox;
 
-        printf("Lista: ");
+        printf("Lista: \n");
 
-        while (temp->prox != NULL)
+        while (temp != NULL)
         {
             printf("Nome: %s", temp->nome);
-            printf("Idade %d", temp->idade);
+            printf(" | Idade: %d", temp->idade);
+
+            SetConsoleTextAttribute(hConsole, 6); // MUDA COR P Q EU QUERO
             printf(" ==> ");
+            SetConsoleTextAttribute(hConsole, saved_Attributes); // RESETA
 
             temp = temp->prox;
         }
+
+        printf("NULL");
     }
 }
