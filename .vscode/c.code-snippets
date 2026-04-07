@@ -1,16 +1,28 @@
 {
     "Adds the Main function": {
-    "prefix": "main",
-    "body": [
-    "#include <stdio.h>",
-    "#include <locale.h>",
-    "",
-    "int main()",
-    "{",
-    "",
-    "    return 0;",
-    "}"
-    ],
-    "description": "Adds the main function to c files"
-    }
+        "prefix": "main",
+        "body": [
+            "#include <stdio.h>",
+            "#include <locale.h>",
+            "",
+            "int main()",
+            "{",
+            "",
+            "    return 0;",
+            "}"
+        ],
+        "description": "Adds the main function to c files"
+    },
+    "Adds the header": {
+        "prefix": "header",
+        "body": [
+            "/*",
+            "Nome: ",
+            "Autor: Marcos Vinicius",
+            "Data: ",
+            "Descrição: ",
+            "*/"
+        ],
+        "description": "Adds the header to the file"
+    },
 }
