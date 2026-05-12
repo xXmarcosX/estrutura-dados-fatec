@@ -16,13 +16,13 @@ int comp = 0, trocas = 0;
 
 int main()
 {
-    // int arr[] = {17, 38, 12, 2, 44, 25, 19, -4, 30, 10};
-    int arr[100000];
+    int arr[] = {17, 38, 12, 2, 44, 25, 19, -4, 30, 10};
+    // int arr[100000];
     int tam = sizeof(arr) / sizeof(arr[0]);
 
-    for (int i = 0; i < tam; i++) {
-        arr[i] = rand() % 10000;
-    }
+    // for (int i = 0; i < tam; i++) {
+    //     arr[i] = rand() % 10000;
+    // }
 
     printf("Array original: \n");
 

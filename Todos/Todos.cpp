@@ -25,9 +25,9 @@ int main()
 {
     // int arr[] = {17, 38, 12, 2, 44, 25, 19, -4, 30, 10};
     // int arr2[] = {17, 38, 12, 2, 44, 25, 19, -4, 30, 10};
-    int arr[100000];
-    int arr2[100000];
-    int arr3[100000];
+    int arr[100];
+    int arr2[100];
+    int arr3[100];
     int tam = sizeof(arr) / sizeof(arr[0]);
     int el = 0;
 

@@ -12,6 +12,12 @@ int fila[5];
 
 int main()
 {
+    enqueue(1);
+    enqueue(1);
+    enqueue(1);
+    enqueue(1);
+    enqueue(1);
+    enqueue(1);
 
     return 0;
 }

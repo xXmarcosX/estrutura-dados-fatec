@@ -16,25 +16,17 @@ int main()
     return 0;
 }
 
-void bubbleSort(int tam, int *arr)
-{
-    int aux, swapped = 0;
+void bubbleSort(int tam, int *arr) {
+    int aux = 0;
 
-    for (int i = 0; i < tam - 1; i++)
-    {
-        swapped = 0;
-
-        for (int j = 0; j < tam - i - 1; j++)
-        {
-            if(arr[j] > arr[j + 1]) 
+    for (int i = 0; i < tam - 1; i++) {
+        for (int j = 0; j < tam - i - 1; i++) {
+            if (arr[j] > arr[j + 1]) 
             {
                 aux = arr[j + 1];
                 arr[j + 1] = arr[j];
                 arr[j] = aux;
-                swapped = 1;
             }
         }
-
-        if (!swapped) break;
     }
 }

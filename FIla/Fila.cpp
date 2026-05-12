@@ -1,68 +1,35 @@
-/*
-	Name: Fila.cpp
-	Author: Marcos Vinicius
-	Date: 24/02/26 10:57
-	Description: Programa para implementar uma fila do tipo FIFO
-*/
-
 #include <stdio.h>
+#include <locale.h>
 #include <stdbool.h>
 
-int itens[5];
-int inicio = -1, fim = -1;
-int tam = 5;
-
-// prototype
-void enqueue(int num);
-int dequeue();
 bool isFull();
 bool isEmpty();
-void printQueue();
+void enqueue(int num);
+int dequeue();
+
+int fila[10];
+int tam = 10;
+int inicio = -1, fim = -1;
 
 int main()
 {
-	int opt = 0, num = 0;
-	int isRunning = true;
 
-	printf("\n\n1 - enqueue");
-	printf("\n2 - dequeue");
-	printf("\n3 - exibir fila");
-	printf("\n0 - sair");
-
-	while (isRunning)
+	for (size_t i = 0; i < 10; i++)
 	{
-		printf("\n\nDigite a parada: ");
-		scanf("%d", &opt);
-
-		switch (opt)
-		{
-		case 1:
-			printf("\nDigite o numero que sera adicionado a fila: ");
-			scanf("%d", &num);
-
-			enqueue(num);
-			break;
-
-		case 2:
-			dequeue();
-			break;
-
-		case 3:
-			printQueue();
-			break;
-
-		case 0:
-			printf("Saindo...");
-			isRunning = false;
-			break;
-
-		default:
-			printf("\nOpcao invalida");
-			break;
-		}
+		printf("%d | ", fila[i]);
 	}
 
 	return 0;
+}
+
+bool isFull()
+{
+	return inicio == (fim + 1) % tam || inicio == 0 && fim == tam - 1;
+}
+
+bool isEmpty()
+{
+	return inicio == -1;
 }
 
 void enqueue(int num)
@@ -75,25 +42,22 @@ void enqueue(int num)
 			inicio = 0;
 
 		fim = (fim + 1) % tam;
-		itens[fim] = num;
-
-		printf("\nElemento %d inserido na fila", num);
+		fila[fim] = num;
 	}
 }
 
 int dequeue()
 {
-	int num;
+	int num = 0;
 
 	if (isEmpty())
 	{
-		printf("\nA Fila esta vazia");
-
+		printf("A fila esta vazia");
 		return -1;
 	}
 	else
 	{
-		num = itens[inicio];
+		num = fila[inicio];
 
 		if (inicio == fim)
 		{
@@ -104,37 +68,7 @@ int dequeue()
 		{
 			inicio = (inicio + 1) % tam;
 		}
-
-		printf("\n%d Foi excluido da fila", num);
-
-		return num;
 	}
-}
 
-bool isFull()
-{
-	if (inicio == (fim + 1) % tam || (inicio == 0 && fim == tam - 1))
-		return true;
-	else
-		return false;
-}
-
-bool isEmpty()
-{
-	if (inicio == -1)
-		return true;
-	else
-		return false;
-}
-
-void printQueue()
-{
-	if (isEmpty())
-		printf("\n\nA FILA ESTA VAZIA");
-	else
-	{
-		printf("\n\nConteudo da fila: ");
-		for (int i = inicio; i <= fim; i++)
-			printf("%d |", itens[i]);
-	}
+	return num;
 }
